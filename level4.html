@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Nível 4 – Estrutura e Imagens</title>
+  <style>
+    body{font-family:Arial,sans-serif;margin:20px;background-color:#f9f9f9;}
+    textarea{width:100%;height:250px;}
+    iframe{width:100%;height:300px;border:1px solid #ccc;margin-top:10px;background:white;}
+    button{margin:5px;padding:10px 20px;border:none;border-radius:5px;cursor:pointer;}
+    button:disabled{background:#ccc;cursor:not-allowed;}
+    #run{background:#2575fc;color:white;}
+    #next{background:#28a745;color:white;}
+  </style>
+</head>
+<body>
+  <h1>Nível 4 – Estrutura Semântica e Imagens</h1>
+  <p>Exemplo de site usando tags semânticas e imagens:</p>
+  <pre>
+&lt;header&gt;&lt;h1&gt;Bem-vindo&lt;/h1&gt;&lt;/header&gt;
+&lt;nav&gt;&lt;a href="#"&gt;Home&lt;/a&gt;&lt;/nav&gt;
+&lt;section&gt;&lt;p&gt;Sobre mim&lt;/p&gt;&lt;img src="https://via.placeholder.com/150" alt="Foto"&gt;&lt;/section&gt;
+&lt;article&gt;&lt;p&gt;Projetos&lt;/p&gt;&lt;/article&gt;
+&lt;footer&gt;&lt;p&gt;Rodapé&lt;/p&gt;&lt;/footer&gt;
+  </pre>
+  <p>Agora é sua vez! Crie um site com todas as tags semânticas + pelo menos uma imagem:</p>
+  <textarea id="editor">&lt;header&gt;&lt;/header&gt;
+&lt;nav&gt;&lt;/nav&gt;
+&lt;section&gt;&lt;/section&gt;
+&lt;article&gt;&lt;/article&gt;
+&lt;footer&gt;&lt;/footer&gt;</textarea>
+  <iframe id="preview"></iframe>
+  <br>
+  <button id="run">Executar</button>
+  <button id="next" disabled>Finalizar e Avançar</button>
+
+  <script>
+    const editor=document.getElementById('editor');
+    const preview=document.getElementById('preview');
+    const runBtn=document.getElementById('run');
+    const nextBtn=document.getElementById('next');
+
+    runBtn.addEventListener('click',()=>{
+      const code=editor.value;
+      preview.srcdoc=code;
+
+      if(code.includes('<header>') && code.includes('<nav>') &&
+         code.includes('<section>') && code.includes('<article>') &&
+         code.includes('<footer>') && code.includes('<img')){
+        alert('✅ Ótimo trabalho! Você completou este nível.');
+        nextBtn.disabled=false;
+      }else{
+        alert('❌ Use todas as tags semânticas e pelo menos uma imagem (<img>).');
+      }
+    });
+
+    nextBtn.addEventListener('click',()=>{
+      localStorage.setItem('nivel4completo','true');
+      window.location.href='level5.html';
+    });
+  </script>
+</body>
+</html>
