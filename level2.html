@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Nível 2 – Tipos de Sites</title>
+  <style>
+    body{font-family:Arial,sans-serif;margin:20px;background-color:#f9f9f9;}
+    textarea{width:100%;height:220px;}
+    iframe{width:100%;height:300px;border:1px solid #ccc;margin-top:10px;background:white;}
+    button{margin:5px;padding:10px 20px;border:none;border-radius:5px;cursor:pointer;}
+    button:disabled{background:#ccc;cursor:not-allowed;}
+    #run{background:#2575fc;color:white;}
+    #next{background:#28a745;color:white;}
+  </style>
+</head>
+<body>
+  <h1>Nível 2 – Tipos de Sites</h1>
+  <p>Exemplo de site com título, parágrafo, lista e link:</p>
+  <pre>
+&lt;h1&gt;Meu Portfólio&lt;/h1&gt;  ← título principal
+&lt;p&gt;Bem-vindo ao meu site!&lt;/p&gt;  ← parágrafo
+&lt;ul&gt;
+  &lt;li&gt;Sobre mim&lt;/li&gt;
+  &lt;li&gt;Projetos&lt;/li&gt;
+  &lt;li&gt;Contato&lt;/li&gt;
+&lt;/ul&gt;  ← lista de itens
+&lt;a href="#"&gt;Clique aqui&lt;/a&gt;  ← link clicável
+  </pre>
+  <p>Agora é sua vez! Crie um site com título, parágrafo, lista e link:</p>
+  <textarea id="editor">&lt;h1&gt;&lt;/h1&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;ul&gt;&lt;/ul&gt;
+&lt;a href="#"&gt;&lt;/a&gt;</textarea>
+  <iframe id="preview"></iframe>
+  <br>
+  <button id="run">Executar</button>
+  <button id="next" disabled>Finalizar e Avançar</button>
+
+  <script>
+    const editor=document.getElementById('editor');
+    const preview=document.getElementById('preview');
+    const runBtn=document.getElementById('run');
+    const nextBtn=document.getElementById('next');
+
+    runBtn.addEventListener('click',()=>{
+      const code=editor.value;
+      preview.srcdoc=code;
+
+      if(code.includes('<h1>') && code.includes('<p>') &&
+         (code.includes('<ul>')||code.includes('<ol>')) &&
+         code.includes('<a')){
+        alert('✅ Ótimo trabalho! Você completou este nível.');
+        nextBtn.disabled=false;
+      }else{
+        alert('❌ Seu site precisa ter: título, parágrafo, lista e link.');
+      }
+    });
+
+    nextBtn.addEventListener('click',()=>{
+      localStorage.setItem('nivel2completo','true');
+      window.location.href='level3.html';
+    });
+  </script>
+</body>
+</html>
