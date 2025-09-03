@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Curso Interativo de Criação de Sites</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: linear-gradient(to right, #6a11cb, #2575fc); color: white; text-align: center; padding: 50px; }
+    h1 { font-size: 48px; margin-bottom: 20px; }
+    .nivel { background-color: rgba(255,255,255,0.2); border-radius: 10px; padding: 20px; margin: 20px auto; width: 300px; cursor: pointer; transition: all 0.3s ease; }
+    .nivel:hover { background-color: rgba(255,255,255,0.4); }
+    .bloqueado { background-color: rgba(0,0,0,0.3); cursor: not-allowed; }
+    button { margin-top: 10px; padding: 10px 20px; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; background-color: #ff9900; color: white; transition: all 0.3s ease; }
+    button:hover { background-color: #e68a00; }
+  </style>
+</head>
+<body>
+  <h1>Curso Interativo de Criação de Sites</h1>
+  <p>Bem-vindo! Clique no nível que deseja começar.</p>
+
+  <div id="nivel1" class="nivel">
+    <h2>Nível 1 – Introdução ao HTML</h2>
+    <button onclick="irParaNivel(1)">Iniciar</button>
+  </div>
+
+  <div id="nivel2" class="nivel bloqueado">
+    <h2>Nível 2 – Tipos de Sites</h2>
+    <button onclick="irParaNivel(2)">Iniciar</button>
+  </div>
+
+  <div id="nivel3" class="nivel bloqueado">
+    <h2>Nível 3 – CSS e Estilo</h2>
+    <button onclick="irParaNivel(3)">Iniciar</button>
+  </div>
+
+  <div id="nivel4" class="nivel bloqueado">
+    <h2>Nível 4 – Estrutura Avançada</h2>
+    <button onclick="irParaNivel(4)">Iniciar</button>
+  </div>
+
+  <div id="nivel5" class="nivel bloqueado">
+    <h2>Nível 5 – Layout Responsivo</h2>
+    <button onclick="irParaNivel(5)">Iniciar</button>
+  </div>
+
+  <script>
+    function irParaNivel(nivel) {
+      if(localStorage.getItem('nivel'+nivel+'desbloqueado')==='true'||nivel===1){
+        window.location.href='level'+nivel+'.html';
+      }else{
+        alert('Você precisa completar o nível anterior primeiro!');
+      }
+    }
+
+    function atualizarBotoes() {
+      for(let i=2;i<=5;i++){
+        if(localStorage.getItem('nivel'+(i-1)+'completo')==='true'){
+          document.getElementById('nivel'+i).classList.remove('bloqueado');
+          localStorage.setItem('nivel'+i+'desbloqueado','true');
+        }
+      }
+    }
+    atualizarBotoes();
+  </script>
+</body>
+  </html>
