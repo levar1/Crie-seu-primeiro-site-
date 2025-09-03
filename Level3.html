@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Nível 3 – CSS e Estilo de Texto</title>
+  <style>
+    body{font-family:Arial,sans-serif;margin:20px;background-color:#f9f9f9;}
+    textarea{width:100%;height:220px;}
+    iframe{width:100%;height:300px;border:1px solid #ccc;margin-top:10px;background:white;}
+    button{margin:5px;padding:10px 20px;border:none;border-radius:5px;cursor:pointer;}
+    button:disabled{background:#ccc;cursor:not-allowed;}
+    #run{background:#2575fc;color:white;}
+    #next{background:#28a745;color:white;}
+  </style>
+</head>
+<body>
+  <h1>Nível 3 – CSS e Estilo de Texto</h1>
+  <p>Exemplo de como mudar cores, fontes e estilos:</p>
+  <pre>
+&lt;h1 style="color:red; font-family:Arial; font-style:italic;"&gt;Título&lt;/h1&gt;
+&lt;p style="color:blue; font-weight:bold;"&gt;Parágrafo&lt;/p&gt;
+&lt;p style="text-shadow:2px 2px gray;"&gt;Parágrafo com sombra&lt;/p&gt;
+  </pre>
+  <p>Agora é sua vez! Modifique o código abaixo aplicando pelo menos 3 estilos diferentes:</p>
+  <textarea id="editor">&lt;h1&gt;Meu Título&lt;/h1&gt;
+&lt;p&gt;Meu Parágrafo&lt;/p&gt;</textarea>
+  <iframe id="preview"></iframe>
+  <br>
+  <button id="run">Executar</button>
+  <button id="next" disabled>Finalizar e Avançar</button>
+
+  <script>
+    const editor=document.getElementById('editor');
+    const preview=document.getElementById('preview');
+    const runBtn=document.getElementById('run');
+    const nextBtn=document.getElementById('next');
+
+    runBtn.addEventListener('click',()=>{
+      const code=editor.value;
+      preview.srcdoc=code;
+
+      let count=0;
+      if(code.includes('color:')) count++;
+      if(code.includes('font-family:') || code.includes('font-size:')) count++;
+      if(code.includes('font-style:') || code.includes('font-weight:')) count++;
+      if(code.includes('text-shadow:')) count++;
+
+      if(count>=3){
+        alert('✅ Ótimo! Você aplicou pelo menos 3 estilos diferentes.');
+        nextBtn.disabled=false;
+      }else{
+        alert('❌ Aplique pelo menos 3 estilos diferentes (cor, fonte, estilo, sombra).');
+      }
+    });
+
+    nextBtn.addEventListener('click',()=>{
+      localStorage.setItem('nivel3completo','true');
+      window.location.href='level4.html';
+    });
+  </script>
+</body>
+</html>
