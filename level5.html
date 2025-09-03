@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Nível 5 – Projeto Final</title>
+  <style>
+    body{font-family:Arial,sans-serif;margin:20px;background-color:#f9f9f9;text-align:center;}
+    textarea{width:100%;height:300px;}
+    iframe#preview{width:100%;height:300px;border:1px solid #ccc;margin-top:10px;background:white;}
+    iframe#video{width:80%;height:450px;border:none;margin:20px 0;display:none;}
+    button{margin:5px;padding:10px 20px;border:none;border-radius:5px;cursor:pointer;}
+    button:disabled{background:#ccc;cursor:not-allowed;}
+    #run{background:#2575fc;color:white;}
+    #finish{background:#28a745;color:white;display:none;}
+    a.button{display:inline-block;padding:15px 30px;background:#28a745;color:white;text-decoration:none;border-radius:5px;font-size:18px;display:none;}
+    a.button:hover{background:#218838;}
+  </style>
+</head>
+<body>
+  <h1>Parabéns! Nível Final</h1>
+  <p>Tudo que fizemos até agora foi para você aprender o básico.<br>
+     Agora é sua vez! Crie um site completo usando tudo que aprendeu.</p>
+
+  <textarea id="editor">
+<h1>Meu Título</h1>
+<p>Meu parágrafo</p>
+<ul>
+<li>Item 1</li>
+<li>Item 2</li>
+</ul>
+<a href="#">Link</a>
+<img src="https://via.placeholder.com/150" alt="Imagem">
+<header></header>
+<nav></nav>
+<section></section>
+<article></article>
+<footer></footer>
+  </textarea>
+
+  <iframe id="preview"></iframe>
+  <br>
+  <button id="run">Executar</button>
+  <button id="finish">Finalizar Curso</button>
+
+  <iframe id="video" src="https://www.youtube.com/embed/SeuIDdoVideo" allowfullscreen></iframe>
+  <p>
+    <a href="https://pages.github.com/" target="_blank" class="button">Acesse o GitHub Pages</a>
+  </p>
+
+  <script>
+    const editor=document.getElementById('editor');
+    const preview=document.getElementById('preview');
+    const runBtn=document.getElementById('run');
+    const finishBtn=document.getElementById('finish');
+    const video=document.getElementById('video');
+    const githubLink=document.querySelector('a.button');
+
+    runBtn.addEventListener('click',()=>{
+      const code=editor.value;
+      preview.srcdoc=code;
+
+      const requisitos=['<h1>','<p>','<ul>','<li>','<a','<img','<header>','<nav>','<section>','<article>','<footer>'];
+      let valido=true;
+      for(let r of requisitos){
+        if(!code.includes(r)){
+          valido=false;
+          break;
+        }
+      }
+
+      if(valido){
+        alert('✅ Parabéns! Você completou o projeto final.');
+        finishBtn.style.display='inline-block';
+      }else{
+        alert('❌ Seu site precisa conter todos os elementos ensinados nos níveis anteriores.');
+      }
+    });
+
+    finishBtn.addEventListener('click',()=>{
+      video.style.display='block';
+      githubLink.style.display='inline-block';
+      finishBtn.disabled=true;
+    });
+  </script>
+</body>
+</html>
