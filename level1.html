@@ -6,17 +6,22 @@
   <style>
     body{font-family:Arial,sans-serif;margin:20px;background-color:#f9f9f9;}
     textarea{width:100%;height:150px;}
-    iframe{width:100%;height:300px;border:1px solid #ccc;margin-top:10px;background:white;}
+    iframe{width:100%;height:200px;border:1px solid #ccc;margin-top:10px;background:white;}
+    button{margin:5px;padding:10px 20px;border:none;border-radius:5px;cursor:pointer;}
     button:disabled{background:#ccc;cursor:not-allowed;}
+    #run{background:#2575fc;color:white;}
+    #next{background:#28a745;color:white;}
   </style>
 </head>
 <body>
   <h1>Nível 1 – HTML Básico</h1>
-  <p>Crie um título (<code>&lt;h1&gt;</code>) e um parágrafo (<code>&lt;p&gt;</code>).</p>
-
-  <textarea id="editor">&lt;h1&gt;Meu Primeiro Site&lt;/h1&gt;
-&lt;p&gt;Bem-vindo ao meu site!&lt;/p&gt;</textarea>
-
+  <p>Aprenda a criar títulos e parágrafos. Cada linha tem um significado:</p>
+  <pre>
+&lt;h1&gt;Título do Site&lt;/h1&gt;  ← cria um título grande
+&lt;p&gt;Parágrafo de texto&lt;/p&gt;  ← cria um parágrafo
+  </pre>
+  <p>Agora é sua vez! Crie um título e um parágrafo:</p>
+  <textarea id="editor"></textarea>
   <iframe id="preview"></iframe>
   <br>
   <button id="run">Executar</button>
@@ -32,17 +37,17 @@
       const code=editor.value;
       preview.srcdoc=code;
 
-      if(code.includes('<h1>')&&code.includes('<p>')){
-        alert('Parabéns! Tarefa concluída.');
+      if(code.includes('<h1>') && code.includes('<p>')){
+        alert('✅ Ótimo trabalho! Você completou este nível.');
         nextBtn.disabled=false;
       }else{
-        alert('Adicione um título (<h1>) e um parágrafo (<p>).');
+        alert('❌ Seu site precisa ter um título (<h1>) e um parágrafo (<p>).');
       }
     });
 
     nextBtn.addEventListener('click',()=>{
       localStorage.setItem('nivel1completo','true');
-      window.location.href='index.html';
+      window.location.href='level2.html';
     });
   </script>
 </body>
